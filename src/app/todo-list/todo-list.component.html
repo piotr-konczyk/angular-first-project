@@ -1,0 +1,14 @@
+<div class="d-flex flex-column border border-secondary gap-2 p-2 rounded">
+  <input [value]="title" class="form-control" placeholder="Title..." />
+  <input [value]="description" class="form-control" placeholder="Desc..." />
+  <button (click)="addTodo()" class="btn btn-primary mt-5">Add</button>
+</div>
+
+@for (todo of todos; track  todo.title) {
+  <div class="d-flex flex-row border border-secondary gap-2 p-2 rounded">
+    <div class="flex-fill">
+      <h3>{{ todo.title }}</h3>
+      <p>{{ todo.description }}</p>
+    </div>
+  </div>
+}

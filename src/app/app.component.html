@@ -1,5 +1,13 @@
-<h1>Hello World!</h1>
+<app-header></app-header>
 
-<button (click)="increment()">Increment</button>
+<div class="m-5">
+  <h1>Hello World!</h1>
 
-<p>Count is {{ count }}</p>
+  <button (click)="increment()" class="btn btn-primary">Increment</button>
+
+  <p>Count is {{ count }}</p>
+
+  <app-todo-list class="text-black"></app-todo-list>
+</div>
+
+<app-footer class="fixed-bottom bg-secondary p-5 text-white"></app-footer>
