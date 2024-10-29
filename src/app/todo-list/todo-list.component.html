@@ -1,26 +1,28 @@
 <div class="d-flex flex-column border border-secondary gap-2 p-2 rounded w-25 mx-auto mt-5">
-  <input #title class="form-control" placeholder="Title..." (focus)="closeAlert()" />
-  <input #description class="form-control" placeholder="Desc..." (focus)="closeAlert()" />
-  <button (click)="addTodo(title.value, description.value)" class="btn btn-primary mt-5">Add</button>
+  <input [(ngModel)]="title" class="form-control" placeholder="Title..." (focus)="closeAlert()" />
+  <input [(ngModel)]="description" class="form-control" placeholder="Desc..." (focus)="closeAlert()" />
+  <button (click)="addTodo()" class="btn btn-primary mt-5">Add</button>
 </div>
 
-<div class="alert alert-danger fade show" role="alert" *ngIf="errorMessage">
+<div class="alert alert-danger fade show p-5" role="alert" *ngIf="errorMessage">
   <strong>Oh snap!</strong>
   <p class="alert-heading">{{ errorMessage }}</p>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlert()"></button>
 </div>
 
 <div class="mt-4 mx-auto text-center">
-  <ul class="list-group" *ngIf="todos.length > 0; else noTodos;">
+  <ul class="list-group d-flex flex-column gap-2" *ngIf="todos.length > 0; else noTodos;">
     <ng-container *ngFor="let todo of todos; index as i">
-        <li class="list-group-item d-flex gap-2 align-items-center" *ngIf="!todo.isCompleted">
-          <span>{{ i + 1}}.</span>
-          <span>{{ todo.title }}</span>
-          <span>{{ todo.description }}</span>
-          <input type="checkbox" [checked]="todo.isCompleted" class="form-check-input" />
-          <button class="btn btn-secondary" (change)="completeTodo(todo)">Complete todo</button>
+        <li class="list-group-item d-flex gap-2 align-items-center mx-5">
+          <span [ngStyle]="{ 'text-decoration': todo.isCompleted ? 'line-through' : 'none' }">{{ i + 1}}.</span>
+          <span [ngStyle]="{ 'text-decoration': todo.isCompleted ? 'line-through' : 'none' }">{{ todo.title }}</span>
+          <span [ngStyle]="{ 'text-decoration': todo.isCompleted ? 'line-through' : 'none' }">{{ todo.description }}</span>
+          <button class="btn btn-secondary text-decoration-none mx-auto" (click)="completeTodo(todo)">Complete todo</button>
+          <button class="btn btn-danger text-decoration-none" (click)="deleteTodo(todo)">Delete todo</button>
         </li>
     </ng-container>
+
+    <button class="btn btn-danger m-5" (click)="deleteCompletedTodos()">Delete completed todos</button>
   </ul>
 
   <ng-template #noTodos>
