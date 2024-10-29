@@ -1,14 +1,23 @@
 <div class="d-flex flex-column border border-secondary gap-2 p-2 rounded">
-  <input [value]="title" class="form-control" placeholder="Title..." />
-  <input [value]="description" class="form-control" placeholder="Desc..." />
-  <button (click)="addTodo()" class="btn btn-primary mt-5">Add</button>
+  <input #title class="form-control" placeholder="Title..." />
+  <input #description class="form-control" placeholder="Desc..." />
+  <button (click)="addTodo(title.value, description.value)" class="btn btn-primary mt-5">Add</button>
 </div>
 
-@for (todo of todos; track  todo.title) {
-  <div class="d-flex flex-row border border-secondary gap-2 p-2 rounded">
-    <div class="flex-fill">
-      <h3>{{ todo.title }}</h3>
-      <p>{{ todo.description }}</p>
+<div class="mt-4">
+  <h1 class="fs-5">Todos</h1>
+  <div class="d-flex flex-column gap-2">
+    <div class="d-flex justify-content-between">
+      <div class="fw-bold">Title</div>
+      <div class="fw-bold">Description</div>
+    </div>
+
+    <div class="d-flex gap-2 align-items-center">
+      @for(todo of todos; track todo.title; let i = $index) {
+        <span>{{ i + 1}}.</span>
+        <p>{{ todo.title }}</p>
+        <p>{{ todo.description }}</p>
+      }
     </div>
   </div>
-}
+</div>

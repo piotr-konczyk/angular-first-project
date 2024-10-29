@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Todo} from '../../types/todo';
+import { Todo } from '../../types/todo';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,11 +15,13 @@ export class TodoListComponent {
 
   todos: Todo[] = []
 
-  addTodo() {
+  addTodo(title: string, description: string) {
     this.todos.push({
-      title: this.title,
-      description: this.description,
+      title: title,
+      description: description,
       isCompleted: false
     })
   }
+
+  protected readonly of = of;
 }
