@@ -1,0 +1,9 @@
+<div class="d-flex flex-column border border-secondary gap-2 p-2 rounded w-25 mx-auto mt-5">
+  <input [(ngModel)]="title" class="form-control" placeholder="Title..." (focus)="closeAlert()" />
+  <input [(ngModel)]="description" class="form-control" placeholder="Desc..." (focus)="closeAlert()" />
+  <button (click)="addTodo({
+    title: title,
+    description: description,
+    isCompleted: false
+  })" class="btn btn-primary mt-5">Add</button>
+</div>

@@ -1,0 +1,12 @@
+<li class="list-group-item d-flex gap-2 align-items-center mx-5 rounded p-3">
+  <span [ngStyle]="{ 'text-decoration': todo.isCompleted ? 'line-through' : 'none' }">{{ index + 1}}.</span>
+  <div class="d-flex flex-column">
+    <span [ngStyle]="{ 'text-decoration': todo.isCompleted ? 'line-through' : 'none' }" class="fs-4">{{ todo.title }}</span>
+    <span [ngStyle]="{ 'text-decoration': todo.isCompleted ? 'line-through' : 'none' }" class="text-secondary">{{ todo.description }}</span>
+  </div>
+
+  <button class="btn btn-secondary text-decoration-none mx-4" (click)="toggleTodoCompletion(todo)">
+    {{ todo.isCompleted ? 'Undo' : 'Complete' }}
+  </button>
+  <button class="btn btn-danger text-decoration-none" (click)="deleteTodo(todo)">Delete todo</button>
+</li>
